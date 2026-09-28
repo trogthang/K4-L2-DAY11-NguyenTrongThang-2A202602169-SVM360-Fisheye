@@ -1,1 +1,34 @@
 round,slice,frame,object_ref,cell,what,why,severity,owner,rule_id,evidence,action,rules_version,note
+r1_craft,B3-mid,adasind_128310.jpg,L3,na,IGNORE_SCOPE,,,,,,,,
+r1_craft,B3-mid,adasind_128310.jpg,L2,na,SPURIOUS,,,,,,,,
+r1_craft,B3-mid,adasind_140160.jpg,L2,na,IGNORE_SCOPE,,,,,,,,
+r1_craft,B3-mid,adasind_140160.jpg,L1+R1,na,WRONG_CLASS,,,,,,,,
+r1_craft,B3-mid,adasind_140160.jpg,L3,na,SPURIOUS,,,,,,,,
+r1_craft,B3-mid,adasind_140160.jpg,L4+R3,na,WRONG_CLASS,,,,,,,,
+r1_craft,B3-mid,adasind_230910.jpg,L3,na,IGNORE_SCOPE,,,,,,,,
+r1_craft,B3-mid,adasind_230910.jpg,L7+R6,na,ATTRIBUTE,,,,,,,,
+r1_craft,B3-mid,adasind_230910.jpg,L2+R1,na,ATTRIBUTE,,,,,,,,
+r1_craft,B3-mid,adasind_230910.jpg,L9+R5,na,WRONG_CLASS,,,,,,,,
+r1_craft,B3-mid,adasind_230910.jpg,L10+R7,na,WRONG_CLASS,,,,,,,,
+r1_craft,B3-mid,adasind_230910.jpg,R8,na,MISSING,,,,,,,,
+r1_craft,B3-mid,adasind_230910.jpg,R10,na,MISSING,,,,,,,,
+r1_craft,B3-mid,adasind_230910.jpg,R11,na,MISSING,,,,,,,,
+r2_qa,B3-mid,adasind_140160.jpg,L2,L_only,SPURIOUS,,P0,annotator,R09,overlay,rework,v1.0.0,Box thừa ngoài vành kính
+r2_qa,B3-mid,adasind_128310.jpg,L1,L_only,ATTRIBUTE,,P2,annotator,R05,overlay,rework,v1.0.0,Cần kiểm tra thuộc tính truncated sát biên
+r2_qa,B3-mid,adasind_230910.jpg,L1,L_only,BOX_GEOMETRY,,P1,annotator,R03,overlay,rework,v1.0.0,Gộp rider và bike theo R03
+r3_diag,B3-mid,adasind_128310.jpg,L6+R5,LR_noM,MISSING,E1_annotator_error,P1,annotator,R01,model_compare,rework,v1.0.0,Đối chiếu model và reference
+r3_diag,B3-mid,adasind_128310.jpg,L2+M4,LM_noR,SPURIOUS,E4_model_domain,P2,ai_team,R01,model_compare,keep_with_reason,v1.0.0,Đối chiếu model và reference
+r3_diag,B3-mid,adasind_140160.jpg,L1+M1,LM_noR,SPURIOUS,E4_model_domain,P2,ai_team,R01,model_compare,keep_with_reason,v1.0.0,Đối chiếu model và reference
+r3_diag,B3-mid,adasind_140160.jpg,L3+M2,LM_noR,SPURIOUS,E4_model_domain,P2,ai_team,R01,model_compare,keep_with_reason,v1.0.0,Đối chiếu model và reference
+r3_diag,B3-mid,adasind_140160.jpg,L4+M3,LM_noR,SPURIOUS,E4_model_domain,P2,ai_team,R01,model_compare,keep_with_reason,v1.0.0,Đối chiếu model và reference
+r3_diag,B3-mid,adasind_140160.jpg,R1,R_only,MISSING,E1_annotator_error,P1,annotator,R01,model_compare,rework,v1.0.0,Đối chiếu model và reference
+r3_diag,B3-mid,adasind_140160.jpg,R3,R_only,MISSING,E1_annotator_error,P1,annotator,R01,model_compare,rework,v1.0.0,Đối chiếu model và reference
+r3_diag,B3-mid,adasind_140160.jpg,M5,M_only,SPURIOUS,E4_model_domain,P2,ai_team,R01,model_compare,keep_with_reason,v1.0.0,Đối chiếu model và reference
+r3_diag,B3-mid,adasind_140160.jpg,M6,M_only,SPURIOUS,E4_model_domain,P2,ai_team,R01,model_compare,keep_with_reason,v1.0.0,Đối chiếu model và reference
+r3_diag,B3-mid,adasind_230910.jpg,L9+M8,LM_noR,SPURIOUS,E4_model_domain,P2,ai_team,R01,model_compare,keep_with_reason,v1.0.0,Đối chiếu model và reference
+r3_diag,B3-mid,adasind_230910.jpg,L10+M9,LM_noR,SPURIOUS,E4_model_domain,P2,ai_team,R01,model_compare,keep_with_reason,v1.0.0,Đối chiếu model và reference
+r3_diag,B3-mid,adasind_230910.jpg,R5,R_only,MISSING,E1_annotator_error,P1,annotator,R01,model_compare,rework,v1.0.0,Đối chiếu model và reference
+r3_diag,B3-mid,adasind_230910.jpg,R7,R_only,MISSING,E1_annotator_error,P1,annotator,R01,model_compare,rework,v1.0.0,Đối chiếu model và reference
+r3_diag,B3-mid,adasind_230910.jpg,R8,R_only,MISSING,E1_annotator_error,P1,annotator,R01,model_compare,rework,v1.0.0,Đối chiếu model và reference
+r3_diag,B3-mid,adasind_230910.jpg,R10,R_only,MISSING,E1_annotator_error,P1,annotator,R01,model_compare,rework,v1.0.0,Đối chiếu model và reference
+r3_diag,B3-mid,adasind_230910.jpg,R11,R_only,MISSING,E1_annotator_error,P1,annotator,R01,model_compare,rework,v1.0.0,Đối chiếu model và reference

@@ -1,6 +1,5 @@
-# Sensor context
+# Sensor context — Phân tích bối cảnh cảm biến
 
-- TODO — Rig: mô tả ngắn xe/camera gắn ở đâu theo hiểu biết của bạn từ ảnh (ADASIND không kèm tài liệu rig chi
-  tiết, ghi theo quan sát).
-- TODO — `ego_body` nhìn thấy ở đâu trong frame (góc capo, gương, tay lái...).
-- TODO — Vòng kính (lens circle) nằm ở vị trí nào trong ảnh, chiếm khoảng bao nhiêu phần khung hình.
+- **Rig:** Qua quan sát chuỗi ảnh ADASIND trong slice B3-mid, camera fisheye đơn được gắn ở vị trí phía trước xe thử nghiệm (khu vực kính chắn gió hoặc trên nóc xe hướng về phía trước), góc quay hơi chúc xuống mặt đường để quan sát bao quát dòng giao thông đô thị và mặt đường cận cảnh.
+- **`ego_body`:** Phần thân xe ego (mũi ca-pô/cản trước của xe gắn camera) xuất hiện ở đáy khung hình (khu vực mép dưới tâm ảnh). Phần này thuộc cấu trúc xe tự hành nên cần khoanh vùng polygon `ignore_region` với nhãn `reason: ego_body` để loại trừ khỏi tập đánh giá đối tượng phát hiện.
+- **Vòng kính (lens circle):** Vòng tròn quang học của thấu kính fisheye nằm chính giữa khung hình kích thước dọc 1080x1920 px, chiếm khoảng 75-80% diện tích ảnh. Các góc ảnh và hai dải biên trên/dưới nằm ngoài vòng kính thực tế là vành đen quang học (vignetting/lens border), đã được xác định bằng các polygon `ignore_region` với `reason: lens_border` để loại bỏ vùng mù quang học.

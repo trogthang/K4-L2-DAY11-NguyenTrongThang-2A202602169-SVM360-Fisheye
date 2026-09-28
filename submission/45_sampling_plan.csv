@@ -1,9 +1,9 @@
 camera_id,slice_type,frames,risk,rationale
-front,normal,,TODO,TODO
-front,hard,,TODO,TODO
-rear,normal,,TODO,TODO
-rear,hard,,TODO,TODO
-left,normal,,TODO,TODO
-left,hard,,TODO,TODO
-right,normal,,TODO,TODO
-right,hard,,TODO,TODO
+front,normal,30,Bỏ sót phương tiện nhỏ di chuyển ở xa tâm đường,Đánh giá độ nhạy nhận diện dòng phương tiện giao thông cùng chiều ở khoảng cách tiêu chuẩn
+front,hard,20,Lóa sáng ngược chiều và méo hình cực đại khi xe rẽ góc gắt,Kiểm thử khả năng phát hiện người đi bộ băng qua đường và xe hai bánh tạt đầu ở vùng mù
+rear,normal,30,Bỏ sót vật thể tĩnh tầm thấp và cột mốc khi lùi xe,Đảm bảo độ tin cậy của tính năng tự động lùi xe và đỗ xe trong điều kiện tiêu chuẩn
+rear,hard,20,Đèn xe phía sau chiếu rọi trực tiếp gây lóa và phương tiện áp sát,Thử nghiệm tình huống bám đuôi cự ly gần và chướng ngại vật sát cản sau ngoài tầm quan sát
+left,normal,30,Méo dãn hình quạt lớn ở camera gắn dưới gương chiếu hậu bên trái,Giám sát dòng xe chạy song song ở làn lân cận phục vụ tính năng cảnh báo chuyển làn
+left,hard,20,Đứt gãy đối tượng tại vùng giáp ranh (seam) giữa camera trước và trái,Kiểm tra độ chính xác khi đối tượng đi xuyên qua ranh giới chồng lấn của hai góc camera
+right,normal,30,Nhầm lẫn mép vỉa hè hoặc bóng cây ven đường thành chướng ngại vật,Đánh giá khả năng ước lượng lề đường và duy trì khoảng cách an toàn bên phụ
+right,hard,20,Xe đạp và người đi bộ chen lấn sát sườn xe trong ngõ hẹp bị méo nặng,Tập trung bắt lỗi các ca va chạm tiềm ẩn ở điểm mù sườn phải khi xe chuẩn bị rẽ

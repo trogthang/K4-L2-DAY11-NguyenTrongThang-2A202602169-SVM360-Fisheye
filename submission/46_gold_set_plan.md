@@ -1,18 +1,18 @@
 # Đề xuất gold set theo camera — tình huống giả lập
 
-**Đầu bài:** 50.000 frame từ bốn camera SVM, ngân sách chọn 200 frame để review/gold. Đây là tình huống trên slide,
-**không phải** 50.000 frame có trong repo. Phân bổ đúng 200 ở `45_sampling_plan.csv` cho bốn camera, mỗi camera có
-normal và hard slice. “Gold set” ở đây là **kế hoạch tạo** reference sau kiểm chứng, không phải teaching reference
-ADASIND hoặc nhãn bạn vừa vẽ. Nếu cần, dùng `notebooks/day11-svm360-colab.ipynb` để thử tổng phân bổ; notebook
-không làm thay phần lý do.
+**Đầu bài:** 50.000 frame từ bốn camera SVM, ngân sách chọn 200 frame để review/gold set. Dưới đây là kế hoạch chi tiết xây dựng tập dữ liệu chuẩn vàng (gold set) phục vụ đánh giá hệ thống giám sát 360 độ quanh xe tự hành.
 
 | camera_id | Hard case cần chọn | Vì sao dễ sai | Annotation space / calibration cần giữ | Cách review trước khi gọi là gold |
 |---|---|---|---|---|
-| front | TODO | TODO | TODO | TODO |
-| rear | TODO | TODO | TODO | TODO |
-| left | TODO | TODO | TODO | TODO |
-| right | TODO | TODO | TODO | TODO |
+| front | Người đi bộ băng ngang ban đêm, xe hai bánh tạt đầu ở góc cua gắt. | Lóa đèn pha xe ngược chiều, biến dạng quang học hình vòm ở mép dưới, độ tương phản thấp. | Không gian ảnh fisheye 2D gốc, lưu ma trận thông số nội/ngoại tại (intrinsic/extrinsic) và góc chúc pitch của camera trước. | Hai reviewer độc lập gán nhãn mù; nếu IoU < 0.7 hoặc sai khác nhãn thì chuyên gia an toàn (senior domain expert) phân xử. |
+| rear | Vật thể thấp (trẻ em, chướng ngại vật sát mặt đất) khi xe bắt đầu lùi trong bãi đỗ tối. | Nằm sát góc khuất cản sau, bị bóng xe che khuất một phần, kích thước pixel nhỏ. | Ảnh fisheye 2D gốc kết hợp mặt phẳng chiếu BEV (Bird's Eye View) trên mặt đất; lưu độ cao camera sau so với mặt đường. | Kiểm tra chéo với tín hiệu cảm biến lùi, đo khoảng cách vật lý thực tế và kiểm tra nghiêm ngặt thuộc tính `occluded`. |
+| left | Ô tô hoặc xe máy vượt nhanh từ làn trái qua vùng giáp ranh (seam line) giữa camera trước và trái. | Đối tượng xuất hiện đồng thời trên hai camera với góc nghiêng và độ méo khác nhau, dễ bị đứt gãy hoặc trùng box. | Lưu timestamp đồng bộ mili-giây giữa camera trước và trái, lưu mask ranh giới vùng ghép nối (seam line overlap mask). | Reviewer mở song song cặp frame cùng thời điểm của 2 camera cạnh nhau, kiểm tra tính nhất quán về kích thước hộp bao 3D thực tế. |
+| right | Xe máy, xe đạp len lỏi sát sườn xe bên phụ tại các ngã tư đô thị chật hẹp. | Biến dạng dãn ngang cực đại ở rìa dưới gương phụ, dễ nhầm bóng đổ của cây cối/vỉa hè thành xe cộ. | Ảnh fisheye 2D gốc của camera phải, lưu góc xoay gương chiếu hậu và đường biên lề đường nhìn thấy được. | Kiểm tra kỹ quy tắc phân biệt vỉa hè với phương tiện động, kiểm tra chiều cao tối thiểu $H \ge 40\text{ px}$ và gán nhãn cẩn thận. |
 
-- Khi nào cần refresh gold set (đổi camera, calibration hoặc rule): TODO
-- Một ca seam/cross-camera cần policy và evidence trước khi ghép hai box: TODO
-- Vì sao peer agreement hoặc quality report trên ảnh một camera chưa chứng minh gold set đúng cho cả bốn camera: TODO
+- **Khi nào cần refresh gold set:**
+  - Cần tái thẩm định và làm mới tập gold set khi: (1) Thay đổi phần cứng camera (cảm biến mới, góc mở FOV khác hoặc độ phân giải thay đổi); (2) Hiệu chuẩn lại xe (re-calibration làm biến đổi ma trận chuyển đổi tọa độ ngoại tại); (3) Thay đổi hoặc nâng cấp quy chuẩn nhãn (bump `rules_version` từ v1.0.0 lên v1.1.0).
+- **Một ca seam/cross-camera cần policy và evidence trước khi ghép hai box:**
+  - Khi một vật thể nằm vắt ngang vùng chồng lấn (overlap seam) của 2 camera cạnh nhau, tuyệt đối không tự ý gộp hai box hoặc gán cùng track ID nếu chưa hội đủ 3 điều kiện: (1) Bằng chứng đồng bộ thời gian chính xác giữa 2 camera ($\Delta t < 10\text{ ms}$); (2) Phép chiếu hình học từ 2 camera xuống mặt phẳng tọa độ mặt đất 3D trùng khớp vị trí thực tế của xe; (3) Chính sách phân xử rõ ràng quy định camera nào làm chủ (primary) để tránh đếm trùng hai lần (double counting).
+- **Vì sao peer agreement hoặc quality report trên ảnh một camera chưa chứng minh gold set đúng cho cả bốn camera:**
+  - Sự đồng thuận giữa các đồng nghiệp hoặc báo cáo chất lượng cao trên một camera đơn lẻ chỉ phản ánh tính chính xác cục bộ trong không gian 2D của một góc nhìn (như camera trước).
+  - Hệ thống SVM 360 đòi hỏi sự liền mạch toàn diện quanh thân xe: các vùng nối ảnh (seam lines), hiện tượng méo ngược hướng ở 4 camera, và tính liên tục khi theo dõi vật thể di chuyển từ camera này sang camera khác. Do đó, một tập gold set chỉ đạt chuẩn thực sự khi được kiểm chứng đa góc nhìn và đồng bộ không gian - thời gian trên toàn bộ 4 camera.
